@@ -13,20 +13,43 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.Button;
 
 public class MainActivity extends ActionBarActivity {
-   public final static String EXTRA_MESSAGE = "com.example.AddressBook.MESSAGE";
+   public final static String EXTRA_MESSAGE = "com.ome.akashsachdeva.myapplication.MESSAGE";
    private ListView obj;
    MyDBHandler mydb;
+   Button FAB;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
+
+
+      FAB = (Button)findViewById(R.id.button);
+      FAB.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+
+            //Toast.makeText(getApplicationContext(),"Button clicked",Toast.LENGTH_SHORT).show();
+            Bundle dataBundle = new Bundle();
+            dataBundle.putInt("id", 0);
+            Intent i = new Intent(MainActivity.this, DisplayContact.class);
+            i.putExtras(dataBundle);
+            startActivity(i);
+
+
+
+
+
+         }
+      });
 
       mydb = new MyDBHandler(this);
       ArrayList array_list = mydb.getAllData();
@@ -50,6 +73,7 @@ public class MainActivity extends ActionBarActivity {
          }
       });
    }
+
 
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {

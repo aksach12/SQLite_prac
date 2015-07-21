@@ -33,12 +33,11 @@ public class DisplayContact extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_contact);
         name = (TextView) findViewById(R.id.editTextName);
-        //phone = (TextView) findViewById(R.id.editTextPhone);
-        email = (TextView) findViewById(R.id.editTextEmail);
-        //street = (TextView) findViewById(R.id.editTextEmail);
-        amount = (TextView) findViewById(R.id.editTextCity);
+        email = (TextView) findViewById(R.id.editText2);
+        amount = (TextView) findViewById(R.id.editText);
 
         mydb = new MyDBHandler(this);
+
 
         Bundle extras = getIntent().getExtras();
         if(extras !=null)
@@ -90,7 +89,8 @@ public class DisplayContact extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        Bundle extras = getIntent().getExtras();
+        Bundle extras;
+        extras = getIntent().getExtras();
 
         if(extras !=null)
         {
@@ -164,8 +164,12 @@ public class DisplayContact extends ActionBarActivity {
     }
 
     public void run(View view)
+
     {
-        Bundle extras = getIntent().getExtras();
+
+        Bundle extras=new Bundle();
+        extras.putInt("id", 0);
+        extras = getIntent().getExtras();
         if(extras !=null)
         {
             int Value = extras.getInt("id");
